@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+School Settings  EVENING CLASSES
+</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body onload="loadSettings()">
+
+
+
+<div class="sidebar">
+
+
+<div class="brand">
+
+
+
+<h2>
+ADMIN PANEL
+</h2>
+
+</div>
+
+
+<a href="admin-dashboard.html">
+🏠 Dashboard
+</a>
+
+
+<a href="manage-staff.html">
+👨‍🏫 Staff Management
+</a>
+
+
+<a href="manage-subjects.html">
+📚 Subjects
+</a>
+
+
+<a href="submissions.html">
+📝 Lesson Records
+</a>
+
+
+<a href="reports.html">
+📊 Reports
+</a>
+
+
+<a href="settings.html">
+⚙ Settings
+</a>
+
+
+<a href="#" onclick="logout()">
+🚪 Logout
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="main-content">
+
+
+
+<div class="section-box">
+
+
+<h2>
+School Branding Settings
+</h2>
+
+
+<p>
+Configure your school's information.
+</p>
+
+
+
+<div class="form-group">
+
+<label>
+School Name
+</label>
+
+<input
+type="text"
+id="schoolName"
+placeholder="Enter school name">
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+School Motto
+</label>
+
+<input
+type="text"
+id="schoolMotto"
+placeholder="Enter school motto">
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+School Phone
+</label>
+
+<input
+type="text"
+id="schoolPhone"
+placeholder="Enter phone number">
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+School Email
+</label>
+
+<input
+type="email"
+id="schoolEmail"
+placeholder="Enter email">
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Academic Year
+</label>
+
+
+<input
+type="text"
+id="academicYear"
+placeholder="2026">
+
+</div>
+<br>
+
+
+<div class="form-group">
+
+<label>
+School Logo
+</label>
+
+
+<input 
+type="file"
+id="schoolLogo"
+accept="image/*">
+
+
+</div>
+
+
+
+<img 
+id="logoPreview"
+src=""
+style="
+width:100px;
+height:100px;
+object-fit:contain;
+margin:15px;
+">
+
+<br>
+
+
+<button onclick="saveSettings()">
+
+SAVE SETTINGS
+
+</button>
+
+
+
+<p id="settingsMessage"></p>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
