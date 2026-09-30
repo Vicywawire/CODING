@@ -65,106 +65,60 @@ initializeSystem();
 // LOGIN
 // ======================================================
 
-function login() {
+async function login(){
 
-    const role =
-        document.getElementById("role").value;
+let username =
+document.getElementById("username").value.trim();
 
-    const username =
-        document.getElementById("username").value.trim();
+let password =
+document.getElementById("password").value.trim();
 
-    const password =
-        document.getElementById("password").value.trim();
-
-    const message =
-        document.getElementById("message");
+let role =
+document.getElementById("role").value;
 
 
-    // ADMIN LOGIN
-
-    if (role === "admin") {
-
-        if (
-            username === "admin" &&
-            password === "admin123"
-        ) {
-
-            localStorage.setItem(
-                "loggedInRole",
-                "admin"
-            );
-
-            localStorage.setItem(
-                "loggedInUser",
-                "Administrator"
-            );
-
-            localStorage.removeItem(
-                "loggedInUsername"
-            );
-
-            window.location.href =
-                "admin-dashboard.html";
-
-        } else {
-
-            message.textContent =
-                "Invalid administrator username or password.";
-        }
-
-        return;
-    }
+let {data,error}=await supabaseClient
+.from("users")
+.select("*")
+.eq("username",username)
+.eq("password",password)
+.eq("role",role)
+.single();
 
 
-    // STAFF LOGIN
 
-    if (role === "staff") {
+if(error || !data){
 
-        const staff =
-            JSON.parse(
-                localStorage.getItem("staff")
-            ) || [];
+document.getElementById("message").innerHTML =
+"Invalid username or password";
 
+return;
 
-        const foundStaff =
-            staff.find(function(member) {
-
-                return (
-                    member.username === username &&
-                    member.password === password
-                );
-
-            });
-
-
-        if (foundStaff) {
-
-            localStorage.setItem(
-                "loggedInRole",
-                "staff"
-            );
-
-            localStorage.setItem(
-                "loggedInUser",
-                foundStaff.name
-            );
-
-            localStorage.setItem(
-                "loggedInUsername",
-                foundStaff.username
-            );
-
-            window.location.href =
-                "staff-dashboard.html";
-
-        } else {
-
-            message.textContent =
-                "Invalid staff username or password.";
-        }
-    }
 }
 
+
+
+localStorage.setItem(
+"loggedInRole",
+data.role
+);
+
+
+localStorage.setItem(
+"loggedInUser",
+data.name
+);
+
+
+window.location.href =
+data.role==="admin"
+?
+"admin-dashboard.html"
+:
+"staff-dashboard.html";
+
+
+}
 
 // ======================================================
 // LOGOUT
